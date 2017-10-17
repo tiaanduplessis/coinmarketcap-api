@@ -58,6 +58,8 @@
 
 ## Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tiaanduplessis/coinmarketcap-api.svg)](https://greenkeeper.io/)
+
 ```sh
 $ npm install coinmarketcap-api
 # OR
