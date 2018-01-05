@@ -10,6 +10,10 @@
   <a href="https://npmjs.org/package/coinmarketcap-api">
   <img src="https://img.shields.io/npm/dm/coinmarketcap-api.svg?style=flat-square" alt="npm downloads" />
   </a>
+
+  <a href="https://greenkeeper.io/">
+  <img src="https://badges.greenkeeper.io/tiaanduplessis/coinmarketcap-api.svg alt="Greenkeeper" />
+  
   <a href="https://github.com/feross/standard">
     <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="standard JS linter" />
   </a>
@@ -57,8 +61,6 @@
 </details>
 
 ## Install
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/tiaanduplessis/coinmarketcap-api.svg)](https://greenkeeper.io/)
 
 ```sh
 $ npm install coinmarketcap-api
