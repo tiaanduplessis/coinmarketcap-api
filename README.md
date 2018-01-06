@@ -88,6 +88,7 @@ Get ticker information
 **Parameters**
 
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request:
+    -   `options.start` **Int?** Return results from rank start and above
     -   `options.limit` **Int?** Only returns the top limit results
     -   `options.convert` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return price, 24h volume, and market cap in terms of another currency
     -   `options.currency` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return only specific currency
@@ -99,6 +100,7 @@ const client = new CoinMarketCap()
 client.getTicker({limit: 3}).then(console.log).catch(console.error)
 client.getTicker({limit: 1, currency: 'bitcoin'}).then(console.log).catch(console.error)
 client.getTicker({convert: 'EUR'}).then(console.log).catch(console.error)
+client.getTicker({start: 0, limit: 5}).then(console.log).catch(console.error)
 ```
 
 ### getGlobal
