@@ -3,7 +3,7 @@
 const fetch = require('node-fetch')
 const qs = require('qs')
 
-const BASE_URL = 'https://api.coinmarketcap.com/'
+const BASE_URL = 'https://api.coinmarketcap.com'
 
 class CoinMarketCap {
   constructor ({ version = 'v1' } = {}) {
@@ -30,7 +30,7 @@ class CoinMarketCap {
      */
   getTicker ({ limit, convert, currency }) {
     return createRequest({
-      url: `${this.url}/ticker${currency ? `/${currency}`.toLowerCase() : ''}`,
+      url: `${this.url}/ticker${currency ? `/${currency}/`.toLowerCase() : ''}`,
       headers: this.headers,
       query: { convert, limit }
     })
