@@ -3,7 +3,7 @@
 const fetch = require('node-fetch')
 const qs = require('qs')
 
-const BASE_URL = 'https://api.coinmarketcap.com/'
+const BASE_URL = 'https://api.coinmarketcap.com'
 
 class CoinMarketCap {
   constructor ({ version = 'v1' } = {}) {
@@ -18,7 +18,8 @@ class CoinMarketCap {
      * Get ticker information
      *
      * @param {Object=} options Options for the request:
-     * @param {Int=} options.limit  Only returns the top limit results
+     * @param {Int=} options.start  Return results from rank start + 1 and above
+     * @param {Int=} options.limit  Only returns limit number of results
      * @param {String=} options.convert  Return price, 24h volume, and market cap in terms of another currency
      * @param {String=} options.currency  Return only specific currency
      *
@@ -27,12 +28,13 @@ class CoinMarketCap {
      * client.getTicker({limit: 3}).then(console.log).catch(console.error)
      * client.getTicker({limit: 1, currency: 'bitcoin'}).then(console.log).catch(console.error)
      * client.getTicker({convert: 'EUR'}).then(console.log).catch(console.error)
+     * client.getTicker({start: 0, limit: 5}).then(console.log).catch(console.error)
      */
-  getTicker ({ limit, convert, currency }) {
+  getTicker ({ start, limit, convert, currency }) {
     return createRequest({
-      url: `${this.url}/ticker${currency ? `/${currency}`.toLowerCase() : ''}`,
+      url: `${this.url}/ticker${currency ? `/${currency}/`.toLowerCase() : ''}`,
       headers: this.headers,
-      query: { convert, limit }
+      query: { start, convert, limit }
     })
   }
 
