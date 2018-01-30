@@ -87,11 +87,11 @@ Get ticker information
 
 **Parameters**
 
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request:
-    -   `options.start` **Int?** Return results from rank start and above
-    -   `options.limit` **Int?** Only returns the top limit results
-    -   `options.convert` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return price, 24h volume, and market cap in terms of another currency
-    -   `options.currency` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return only specific currency
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request:
+    -   `options.start` **Int?** Return results from rank start + 1 and above
+    -   `options.limit` **Int?** Only returns limit number of results
+    -   `options.convert` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return price, 24h volume, and market cap in terms of another currency
+    -   `options.currency` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return only specific currency
 
 **Examples**
 
@@ -110,8 +110,8 @@ Get global information
 **Parameters**
 
 -   `convert`  
--   `options` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))?** Options for the request
-    -   `options.convert` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return price, 24h volume, and market cap in terms of another currency
+-   `options` **([Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Options for the request
+    -   `options.convert` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Return price, 24h volume, and market cap in terms of another currency
 
 **Examples**
 

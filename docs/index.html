@@ -69,7 +69,7 @@
   <p>Get ticker information</p>
 
 
-  <div class='pre p1 fill-light mt0'>getTicker(options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  <div class='pre p1 fill-light mt0'>getTicker(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
   
   
 
@@ -86,7 +86,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
 	    Options for the request:
 
           </div>
@@ -105,25 +105,40 @@
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.limit</span> <code class='quiet'>Int?</code>
-                  </td>
-                  <td class='break-word'><span>Only returns the top limit results
+  <td class='break-word'><span class='code bold'>options.start</span> <code class='quiet'>Int?</code>
+  </td>
+  <td class='break-word'><span>Return results from rank start + 1 and above
 </span></td>
-                </tr>
+</tr>
+
+
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
-                  </td>
-                  <td class='break-word'><span>Return price, 24h volume, and market cap in terms of another currency
+  <td class='break-word'><span class='code bold'>options.limit</span> <code class='quiet'>Int?</code>
+  </td>
+  <td class='break-word'><span>Only returns limit number of results
 </span></td>
-                </tr>
+</tr>
+
+
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.currency</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
-                  </td>
-                  <td class='break-word'><span>Return only specific currency
+  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  </td>
+  <td class='break-word'><span>Return price, 24h volume, and market cap in terms of another currency
 </span></td>
-                </tr>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.currency</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  </td>
+  <td class='break-word'><span>Return only specific currency
+</span></td>
+</tr>
+
+
               
             </tbody>
           </table>
@@ -146,7 +161,8 @@
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap()
 client.getTicker({<span class="hljs-attr">limit</span>: <span class="hljs-number">3</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getTicker({<span class="hljs-attr">limit</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">currency</span>: <span class="hljs-string">'bitcoin'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-string">'EUR'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
+client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-string">'EUR'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getTicker({<span class="hljs-attr">start</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">5</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
     
   
 
@@ -176,7 +192,7 @@ client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-stri
   <p>Get global information</p>
 
 
-  <div class='pre p1 fill-light mt0'>getGlobal(convert: any, options: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</div>
+  <div class='pre p1 fill-light mt0'>getGlobal(convert: any, options: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</div>
   
   
 
@@ -201,7 +217,7 @@ client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-stri
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</code>
+            <span class='code bold'>options</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</code>
 	    Options for the request
 
           </div>
@@ -220,11 +236,13 @@ client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-stri
             <tbody class='mt1'>
               
                 <tr>
-                  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
-                  </td>
-                  <td class='break-word'><span>Return price, 24h volume, and market cap in terms of another currency
+  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  </td>
+  <td class='break-word'><span>Return price, 24h volume, and market cap in terms of another currency
 </span></td>
-                </tr>
+</tr>
+
+
               
             </tbody>
           </table>
