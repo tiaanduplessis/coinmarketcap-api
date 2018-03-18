@@ -30,7 +30,9 @@ class CoinMarketCap {
    * client.getTicker({convert: 'EUR'}).then(console.log).catch(console.error)
    * client.getTicker({start: 0, limit: 5}).then(console.log).catch(console.error)
    */
-  getTicker ({ start, limit, convert, currency }) {
+  getTicker (args = {}) {
+    const { start, limit, convert, currency } = args
+
     return createRequest({
       url: `${this.url}/ticker${currency ? `/${currency}/`.toLowerCase() : ''}`,
       headers: this.headers,
@@ -62,7 +64,8 @@ class CoinMarketCap {
   }
 }
 
-const createRequest = ({ url, headers, query }) => {
+const createRequest = (args = {}) => {
+  const { url, headers, query } = args
   const opts = {
     headers,
     method: 'GET'

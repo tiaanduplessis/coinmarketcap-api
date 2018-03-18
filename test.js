@@ -12,10 +12,12 @@ test('should return new CoinMarketCap client', () => {
 
 test('should get latest ticker', async () => {
   const client = new CoinMarketCap()
-  const ticker = await client.getTicker({limit: 10})
+  const ticker1 = await client.getTicker()
+  const ticker2 = await client.getTicker({limit: 10})
 
-  expect(typeof ticker).toBe('object')
-  expect(ticker.length).toBe(10)
+  expect(typeof ticker1).toBe('object')
+  expect(typeof ticker2).toBe('object')
+  expect(ticker2.length).toBe(10)
 })
 
 test('should get latest global', async () => {
