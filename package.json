@@ -29,10 +29,17 @@
     "husky": "^0.14.3",
     "prettier-standard": "^8.0.0",
     "jest": "^22.1.4",
-    "documentation": "^5.3.5"
+    "documentation": "^6.1.0"
   },
   "dependencies": {
-    "node-fetch": "^1.7.2",
+    "node-fetch": "^2.1.2",
     "qs": "^6.5.1"
-  }
+  },
+  "keywords": [
+    "api",
+    "wrapper",
+    "coinmarketcap",
+    "bitcoin",
+    "cryptocurrency"
+    ]
 }
