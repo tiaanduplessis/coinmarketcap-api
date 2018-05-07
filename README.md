@@ -83,8 +83,20 @@ client.getGlobal().then(console.log).catch(console.error)
 
 #### Table of Contents
 
+-   [getListings](#getlistings)
 -   [getTicker](#getticker)
 -   [getGlobal](#getglobal)
+
+### getListings
+
+Get all active cryptocurrency listings
+
+**Examples**
+
+```javascript
+const client = new CoinMarketCap()
+client.getListings().then(console.log).catch(console.error)
+```
 
 ### getTicker
 
