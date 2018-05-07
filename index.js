@@ -6,12 +6,26 @@ const qs = require('qs')
 const BASE_URL = 'https://api.coinmarketcap.com'
 
 class CoinMarketCap {
-  constructor ({ version = 'v1' } = {}) {
+  constructor ({ version = 'v2' } = {}) {
     this.headers = {
       Accept: 'application/json',
       'Accept-Charset': 'utf-8'
     }
     this.url = `${BASE_URL}/${version}`
+  }
+
+  /**
+   * Get all active cryptocurrency listings
+   *
+   * @example
+   * const client = new CoinMarketCap()
+   * client.getListings().then(console.log).catch(console.error)
+   */
+  getListings () {
+    return createRequest({
+      url: `${this.url}/listings`,
+      headers: this.headers
+    })
   }
 
   /**
