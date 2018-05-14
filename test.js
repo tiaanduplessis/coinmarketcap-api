@@ -21,6 +21,22 @@ test('should get latest ticker', async () => {
   expect(Object.keys(ticker2.data).length).toBe(10)
 })
 
+test('should result in errors due to wrong parameter usage', async () => {
+  const client = new CoinMarketCap()
+
+  try {
+    await client.getTicker({currency: 'BTC', id: 1})
+  } catch (e) {
+    expect(e.toString()).toMatch('Error: Currency and ID cannot be passed in at the same time.')
+  }
+
+  try {
+    await client.getTicker({start: 1, currency: 'ETH'})
+  } catch (e) {
+    expect(e.toString()).toMatch('Error: Start and limit options can only be used when currency or ID is not given.')
+  }
+})
+
 test('should get latest global', async () => {
   const client = new CoinMarketCap()
   const global = await client.getGlobal()
@@ -33,5 +49,6 @@ test(`should get latest listings`, async () => {
   const listings = await client.getListings()
 
   expect(typeof listings).toBe('object')
+  expect(Array.isArray(listings.data)).toBe(true)
 })
 

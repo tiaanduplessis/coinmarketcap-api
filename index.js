@@ -29,26 +29,46 @@ class CoinMarketCap {
   }
 
   /**
-   * Get ticker information
+   * Get ticker information.
+   * Start and limit options can only be used when currency or ID is not given.
+   * Currency and ID cannot be passed in at the same time.
    *
    * @param {Object=} options Options for the request:
    * @param {Int=} options.start  Return results from rank start + 1 and above
    * @param {Int=} options.limit  Only returns limit number of results
    * @param {String=} options.convert  Return price, 24h volume, and market cap in terms of another currency
    * @param {String=} options.currency  Return only specific currency
+   * @param {Int=} options.id Return only specific currency associated with its ID from listings
    *
    * @example
    * const client = new CoinMarketCap()
    * client.getTicker({limit: 3}).then(console.log).catch(console.error)
-   * client.getTicker({limit: 1, currency: 'bitcoin'}).then(console.log).catch(console.error)
    * client.getTicker({convert: 'EUR'}).then(console.log).catch(console.error)
    * client.getTicker({start: 0, limit: 5}).then(console.log).catch(console.error)
+   * client.getTicker({currency: 'BTC'}).then(console.log).catch(console.error)
+   * client.getTicker({convert: 'JPY', id: 2}).then(console.log).catch(console.error)
    */
-  getTicker (args = {}) {
-    const { start, limit, convert, currency } = args
+  async getTicker (args = {}) {
+    let { start, limit, convert, currency, id } = args
+
+    if ((currency || id) && (start || limit)) {
+      throw new Error(
+        'Start and limit options can only be used when currency or ID is not given.'
+      )
+    }
+    if (currency && id) {
+      throw new Error('Currency and ID cannot be passed in at the same time.')
+    }
+
+    if (currency) {
+      let listings = await this.getListings()
+      id = listings.data.find(
+        listing => listing.symbol === currency.toUpperCase()
+      ).id
+    }
 
     return createRequest({
-      url: `${this.url}/ticker${currency ? `/${currency}/`.toLowerCase() : ''}`,
+      url: `${this.url}/ticker/${id ? `${id}/` : ''}`,
       headers: this.headers,
       query: { start, convert, limit }
     })
