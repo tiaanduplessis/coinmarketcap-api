@@ -21,6 +21,26 @@ test('should get latest ticker', async () => {
   expect(Object.keys(ticker2.data).length).toBe(10)
 })
 
+test('should get Bitcoin ticker from currency symbol', async () => {
+  const client = new CoinMarketCap()
+  const ticker = await client.getTicker({currency: 'BTC'})
+
+  expect(typeof ticker).toBe('object')
+  expect(ticker.data.id).toBe(1)
+  expect(ticker.data.name).toMatch('Bitcoin')
+  expect(ticker.data.symbol).toMatch('BTC')
+})
+
+test('should get Bitcoin ticker from its listings ID', async () => {
+  const client = new CoinMarketCap()
+  const ticker = await client.getTicker({ id: 1 })
+
+  expect(typeof ticker).toBe('object')
+  expect(ticker.data.id).toBe(1)
+  expect(ticker.data.name).toMatch('Bitcoin')
+  expect(ticker.data.symbol).toMatch('BTC')
+})
+
 test('should result in errors due to wrong parameter usage', async () => {
   const client = new CoinMarketCap()
 
