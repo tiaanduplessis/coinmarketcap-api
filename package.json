@@ -16,20 +16,20 @@
   "scripts": {
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
-    "format": "prettier-standard index.js",
+    "lint": "standard ./**/*.js",
     "start": "npm run test",
-    "precommit": "npm run format",
-    "pretest": "npm run format",
+    "precommit": "npm run lint",
+    "pretest": "npm run lint",
     "docs": "npm run docs:readme && npm run docs:html",
     "docs:readme": "documentation readme index.js --section=API",
     "docs:html": "documentation build index.js -f html -o docs"
   },
   "author": "tiaanduplessis <tiaanduplessis@hotmail.com>",
   "devDependencies": {
+    "documentation": "^6.1.0",
     "husky": "^0.14.3",
-    "prettier-standard": "^8.0.0",
     "jest": "^22.1.4",
-    "documentation": "^6.1.0"
+    "standard": "^11.0.1"
   },
   "dependencies": {
     "node-fetch": "^2.1.2",
