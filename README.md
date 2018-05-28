@@ -1,4 +1,4 @@
-# coinmarketcap-api 
+# coinmarketcap-api
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/tiaanduplessis/coinmarketcap-api.svg)](https://greenkeeper.io/) [![npm package version](https://img.shields.io/npm/v/coinmarketcap-api.svg?style=flat-square)](https://npmjs.org/package/coinmarketcap-api)
 [![npm downloads](https://img.shields.io/npm/dm/coinmarketcap-api.svg?style=flat-square)](https://npmjs.org/package/coinmarketcap-api) [![Standard JS linter](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard) [![Codecov](https://codecov.io/gh/tiaanduplessis/coinmarketcap-api/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/tiaanduplessis/coinmarketcap-api)  [![travis ci build status](https://img.shields.io/travis/tiaanduplessis/coinmarketcap-api.svg?style=flat-square)](https://travis-ci.org/tiaanduplessis/coinmarketcap-api)  [![project license](https://img.shields.io/npm/l/coinmarketcap-api.svg?style=flat-square)](https://github.com/tiaanduplessis/coinmarketcap-api/blob/master/LICENSE) [![make a pull request](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)  
@@ -7,11 +7,11 @@
 
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [API](#api)
-- [Contribute](#contribute)
-- [License](#license)
+-   [Install](#install)
+-   [Usage](#usage)
+-   [API](#api)
+-   [Contribute](#contribute)
+-   [License](#license)
 
 ## Install
 

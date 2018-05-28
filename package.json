@@ -16,7 +16,7 @@
   "scripts": {
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
-    "lint": "standard ./**/*.js",
+    "lint": "standard --fix ./**/*.js",
     "start": "npm run test",
     "precommit": "npm run lint",
     "pretest": "npm run lint",
@@ -26,14 +26,14 @@
   },
   "author": "tiaanduplessis <tiaanduplessis@hotmail.com>",
   "devDependencies": {
-    "documentation": "^6.1.0",
+    "documentation": "^7.1.0",
     "husky": "^0.14.3",
-    "jest": "^22.1.4",
+    "jest": "^23.0.1",
     "standard": "^11.0.1"
   },
   "dependencies": {
     "node-fetch": "^2.1.2",
-    "qs": "^6.5.1"
+    "qs": "^6.5.2"
   },
   "keywords": [
     "api",

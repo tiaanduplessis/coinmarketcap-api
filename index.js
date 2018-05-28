@@ -6,11 +6,12 @@ const qs = require('qs')
 const BASE_URL = 'https://api.coinmarketcap.com'
 
 class CoinMarketCap {
-  constructor ({ version = 'v2' } = {}) {
+  constructor ({ version = 'v2', fetcher = fetch } = {}) {
     this.headers = {
       Accept: 'application/json',
       'Accept-Charset': 'utf-8'
     }
+    this.fetcher = fetcher
     this.url = `${BASE_URL}/${version}`
   }
 
@@ -23,6 +24,7 @@ class CoinMarketCap {
    */
   getListings () {
     return createRequest({
+      fetcher: this.fetcher,
       url: `${this.url}/listings`,
       headers: this.headers
     })
@@ -91,6 +93,7 @@ class CoinMarketCap {
     }
 
     return createRequest({
+      fetcher: this.fetcher,
       url: `${this.url}/global`,
       headers: this.headers,
       query: convert
@@ -99,7 +102,7 @@ class CoinMarketCap {
 }
 
 const createRequest = (args = {}) => {
-  const { url, headers, query } = args
+  const { url, headers, query, fetcher } = args
   const opts = {
     headers,
     method: 'GET'
