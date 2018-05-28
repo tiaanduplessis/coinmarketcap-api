@@ -40,9 +40,19 @@ Check out the [CoinMarketCap API documentation](https://coinmarketcap.com/api/) 
 
 #### Table of Contents
 
+-   [constructor](#constructor)
 -   [getListings](#getlistings)
 -   [getTicker](#getticker)
 -   [getGlobal](#getglobal)
+
+### constructor
+
+**Parameters**
+
+-   `Options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the CoinMarketCap instance (optional, default `{}`)
+    -   `Options.version`   (optional, default `'v2'`)
+    -   `Options.fetcher`   (optional, default `fetch`)
+    -   `Options.config`   (optional, default `{}`)
 
 ### getListings
 

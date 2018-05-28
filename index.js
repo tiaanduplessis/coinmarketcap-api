@@ -6,11 +6,23 @@ const qs = require('qs')
 const BASE_URL = 'https://api.coinmarketcap.com'
 
 class CoinMarketCap {
-  constructor ({ version = 'v2', fetcher = fetch } = {}) {
-    this.headers = {
-      Accept: 'application/json',
+  /**
+   * 
+   * @param {Object=} Options Options for the CoinMarketCap instance
+   * @param {String=} options.version  Version of API. Defaults to 'v2'
+   * @param {Function=} options.fetcher fetch function to use. Defaults to node-fetch
+   * @param {Object=} options.config = Configuration for fetch request
+   *  
+   */
+  constructor ({ version = 'v2', fetcher = fetch, config = {}  } = {}) {
+    this.config = Object.assign({}, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
       'Accept-Charset': 'utf-8'
-    }
+      }
+    }, config)
+
     this.fetcher = fetcher
     this.url = `${BASE_URL}/${version}`
   }
@@ -26,7 +38,7 @@ class CoinMarketCap {
     return createRequest({
       fetcher: this.fetcher,
       url: `${this.url}/listings`,
-      headers: this.headers
+      config: this.config
     })
   }
 
@@ -71,7 +83,7 @@ class CoinMarketCap {
 
     return createRequest({
       url: `${this.url}/ticker/${id ? `${id}/` : ''}`,
-      headers: this.headers,
+      config: this.config,
       query: { start, convert, limit }
     })
   }
@@ -95,20 +107,16 @@ class CoinMarketCap {
     return createRequest({
       fetcher: this.fetcher,
       url: `${this.url}/global`,
-      headers: this.headers,
+      config: this.config,
       query: convert
     })
   }
 }
 
 const createRequest = (args = {}) => {
-  const { url, headers, query, fetcher } = args
-  const opts = {
-    headers,
-    method: 'GET'
-  }
+  const { url, config, query, fetcher } = args
 
-  return fetch(`${url}${query ? `?${qs.stringify(query)}` : ''}`).then(res =>
+  return fetch(`${url}${query ? `?${qs.stringify(query)}` : ''}`, config).then(res =>
     res.json()
   )
 }
