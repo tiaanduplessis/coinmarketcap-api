@@ -41,7 +41,17 @@ test('should get Bitcoin ticker from its listings ID', async () => {
   expect(ticker.data.symbol).toMatch('BTC')
 })
 
-test('shoud return main data field as an array', async () => {
+test('should get tickers sorted by ID', async () => {
+  const client = new CoinMarketCap()
+  const ticker = await client.getTicker({sort: 'id'})
+
+  let data = Object.values(ticker.data)
+  for (let i = 1; i < data.length; i++) {
+    expect(data[i].id).toBeGreaterThan(data[i - 1].id)
+  }
+})
+
+test('should return main data field as an array', async () => {
   const client = new CoinMarketCap()
   const ticker = await client.getTicker({structure: 'array'})
 
@@ -78,4 +88,3 @@ test(`should get latest listings`, async () => {
   expect(typeof listings).toBe('object')
   expect(Array.isArray(listings.data)).toBe(true)
 })
-

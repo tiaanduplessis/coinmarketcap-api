@@ -35,6 +35,9 @@
     "node-fetch": "^2.1.2",
     "qs": "^6.5.2"
   },
+  "standard": {
+    "env": ["jest"]
+  },
   "keywords": [
     "api",
     "wrapper",
