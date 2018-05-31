@@ -41,7 +41,7 @@ test('should get Bitcoin ticker from its listings ID', async () => {
   expect(ticker.data.symbol).toMatch('BTC')
 })
 
-test('shoud return data as an array', async () => {
+test('shoud return main data field as an array', async () => {
   const client = new CoinMarketCap()
   const ticker = await client.getTicker({structure: 'array'})
 
