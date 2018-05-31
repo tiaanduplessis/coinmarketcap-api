@@ -70,7 +70,7 @@ test('should result in errors due to wrong parameter usage', async () => {
   try {
     await client.getTicker({start: 1, currency: 'ETH'})
   } catch (e) {
-    expect(e.toString()).toMatch('Error: Start and limit options can only be used when currency or ID is not given.')
+    expect(e.toString()).toMatch('Error: Start, limit, and sort options can only be used when currency or ID is not given.')
   }
 })
 
