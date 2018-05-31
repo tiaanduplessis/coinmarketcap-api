@@ -16,7 +16,7 @@
   "scripts": {
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
-    "lint": "standard --fix ./**/*.js",
+    "lint": "standard --fix ./*.js",
     "start": "npm run test",
     "precommit": "npm run lint",
     "pretest": "npm run lint",
