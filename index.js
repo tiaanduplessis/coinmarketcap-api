@@ -53,6 +53,7 @@ class CoinMarketCap {
    * @param {String=} options.convert  Return price, 24h volume, and market cap in terms of another currency
    * @param {String=} options.currency  Return only specific currency
    * @param {Int=} options.id Return only specific currency associated with its ID from listings
+   * @param {Int=} options.structure Specify the structure for the main data field. Possible values are dictionary and array (default is dictionary).
    *
    * @example
    * const client = new CoinMarketCap()
@@ -63,7 +64,7 @@ class CoinMarketCap {
    * client.getTicker({convert: 'JPY', id: 2}).then(console.log).catch(console.error)
    */
   async getTicker (args = {}) {
-    let { start, limit, convert, currency, id } = args
+    let { start, limit, convert, currency, id, structure } = args
 
     if ((currency || id) && (start || limit)) {
       throw new Error(
@@ -84,7 +85,7 @@ class CoinMarketCap {
     return createRequest({
       url: `${this.url}/ticker/${id ? `${id}/` : ''}`,
       config: this.config,
-      query: { start, convert, limit }
+      query: { start, convert, limit, structure }
     })
   }
 
