@@ -124,10 +124,9 @@ test('should return data field as an array if specified structure as an array', 
 test('should return all tickers', async () => {
   const client = new CoinMarketCap()
   const totalActiveCryptocurrencies = await client.getGlobal().then(res => res.data['active_cryptocurrencies'])
-  const allTickers1 = await client.getTicker({limit: 0}).then(res => Object.keys(res.data).length)
-  const allTickers2 = await client.getTicker({limit: 0, structure: 'array'}).then(res => res.data.length)
-  
+  const allTickers1 = await client.getTicker({limit: '0'}).then(res => Object.keys(res.data).length)
+  const allTickers2 = await client.getTicker({limit: '0', structure: 'array'}).then(res => res.data.length)
+
   expect(allTickers1).toBe(totalActiveCryptocurrencies)
   expect(allTickers2).toBe(totalActiveCryptocurrencies)
 })
-

@@ -76,7 +76,8 @@ class CoinMarketCap {
       throw new Error('Currency and ID cannot be passed in at the same time.')
     }
 
-    if (start && limit == '0') {
+    // eslint-disable-next-line
+    if (start && (limit == '0')) {
       throw new Error('Start and limit = 0 cannot be passed in at the same time.')
     }
 
@@ -87,6 +88,7 @@ class CoinMarketCap {
       ).id
     }
 
+    // eslint-disable-next-line
     if (limit == '0') {
       const promises = []
       const totalCrypto = await this.getTotalActiveCryptocurrencies()
@@ -94,6 +96,7 @@ class CoinMarketCap {
 
       for (let start = 1; start <= totalCrypto; start += maxLimit) {
         promises.push(createRequest({
+          fetcher: this.fetcher,
           url: `${this.url}/ticker/`,
           config: this.config,
           query: { start, structure, convert }
