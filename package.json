@@ -1,6 +1,6 @@
 {
   "name": "coinmarketcap-api",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "CoinMarketCap API wrapper for node",
   "license": "MIT",
   "repository": {
@@ -41,7 +41,9 @@
     "qs": "^6.5.2"
   },
   "standard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   },
   "keywords": [
     "api",
