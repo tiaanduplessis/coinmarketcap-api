@@ -76,11 +76,56 @@ class CoinMarketCap {
       throw new Error('Currency and ID cannot be passed in at the same time.')
     }
 
+    if (start && limit == '0') {
+      throw new Error('Start and limit = 0 cannot be passed in at the same time.')
+    }
+
     if (currency) {
       let listings = await this.getListings()
       id = listings.data.find(
         listing => listing.symbol === currency.toUpperCase()
       ).id
+    }
+
+    if (limit == '0') {
+      const promises = []
+      const totalCrypto = await this.getTotalActiveCryptocurrencies()
+      const maxLimit = 100
+
+      for (let start = 1; start <= totalCrypto; start += maxLimit) {
+        promises.push(createRequest({
+          url: `${this.url}/ticker/`,
+          config: this.config,
+          query: { start, structure, convert }
+        }))
+      }
+
+      return Promise.all(promises).then(tickers => {
+        let allTickers
+        let metadata
+
+        structure ? allTickers = [] : allTickers = {}
+
+        tickers.forEach(ticker => {
+          const tickerData = ticker.data
+          metadata = ticker.metadata
+
+          if (structure && Array.isArray(tickerData)) {
+            tickerData.forEach(ticker => {
+              allTickers.push(ticker)
+            })
+          } else {
+            for (const key in tickerData) {
+              allTickers[tickerData[key].id] = tickerData[key]
+            }
+          }
+        })
+
+        return {
+          data: allTickers,
+          metadata
+        }
+      })
     }
 
     return createRequest({
@@ -113,6 +158,10 @@ class CoinMarketCap {
       config: this.config,
       query: convert
     })
+  }
+
+  getTotalActiveCryptocurrencies () {
+    return this.getGlobal().then(res => res.data.active_cryptocurrencies)
   }
 }
 

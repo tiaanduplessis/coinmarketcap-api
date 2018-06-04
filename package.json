@@ -1,6 +1,6 @@
 {
   "name": "coinmarketcap-api",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "CoinMarketCap API wrapper for node",
   "license": "MIT",
   "repository": {
@@ -24,11 +24,16 @@
     "docs:readme": "documentation readme index.js --section=API",
     "docs:html": "documentation build index.js -f html -o docs"
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test.js"
+  },
   "author": "tiaanduplessis <tiaanduplessis@hotmail.com>",
   "devDependencies": {
     "documentation": "^7.1.0",
     "husky": "^0.14.3",
     "jest": "^23.0.1",
+    "jest-chain": "^1.0.3",
+    "jest-extended": "^0.7.2",
     "standard": "^11.0.1"
   },
   "dependencies": {
