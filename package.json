@@ -1,6 +1,6 @@
 {
   "name": "coinmarketcap-api",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "description": "CoinMarketCap API wrapper for node",
   "license": "MIT",
   "repository": {
@@ -16,7 +16,7 @@
   "scripts": {
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
-    "lint": "standard --fix ./**/*.js",
+    "lint": "standard --fix ./*.js",
     "start": "npm run test",
     "precommit": "npm run lint",
     "pretest": "npm run lint",
@@ -39,6 +39,11 @@
   "dependencies": {
     "node-fetch": "^2.1.2",
     "qs": "^6.5.2"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   },
   "keywords": [
     "api",

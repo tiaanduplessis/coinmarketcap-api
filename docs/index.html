@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>coinmarketcap-api 2.0.2 | Documentation</title>
+  <title>coinmarketcap-api 2.1.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>coinmarketcap-api</h3>
-          <div class='mb1'><code>2.0.2</code></div>
+          <div class='mb1'><code>2.1.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -309,6 +309,24 @@ Currency and ID cannot be passed in at the same time.</p>
   <td class='break-word'><span class='code bold'>options.limit</span> <code class='quiet'>Int?</code>
   </td>
   <td class='break-word'><span>Only returns limit number of results
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.sort</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  </td>
+  <td class='break-word'><span>Sort results by id, rank, volume_24h, or percent_change_24h (default is rank)
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.structure</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  </td>
+  <td class='break-word'><span>Specify the structure for the main data field. Possible values are dictionary and array (default is dictionary).
 </span></td>
 </tr>
 
