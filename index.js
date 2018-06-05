@@ -48,13 +48,13 @@ class CoinMarketCap {
    * Currency and ID cannot be passed in at the same time.
    *
    * @param {Object=} options Options for the request:
-   * @param {Int=} options.start  Return results from rank start + 1 and above
-   * @param {Int=} options.limit  Only returns limit number of results
+   * @param {Number=} options.start  Return results from rank start + 1 and above
+   * @param {Number|String=} options.limit  Only returns limit number of results
    * @param {String=} options.sort Sort results by id, rank, volume_24h, or percent_change_24h (default is rank)
    * @param {String=} options.structure Specify the structure for the main data field. Possible values are dictionary and array (default is dictionary).
    * @param {String=} options.convert  Return price, 24h volume, and market cap in terms of another currency
    * @param {String=} options.currency  Return only specific currency
-   * @param {Int=} options.id Return only specific currency associated with its ID from listings
+   * @param {Number=} options.id Return only specific currency associated with its ID from listings
    *
    * @example
    * const client = new CoinMarketCap()
@@ -77,7 +77,7 @@ class CoinMarketCap {
     }
 
     // eslint-disable-next-line
-    if (start && (limit == '0')) {
+    if (start && (limit == 0)) {
       throw new Error('Start and limit = 0 cannot be passed in at the same time.')
     }
 
@@ -89,7 +89,7 @@ class CoinMarketCap {
     }
 
     // eslint-disable-next-line
-    if (limit == '0') {
+    if (limit == 0) {
       const promises = []
       const totalCrypto = await this.getTotalActiveCryptocurrencies()
       const maxLimit = 100
