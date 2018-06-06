@@ -48,7 +48,7 @@ class CoinMarketCap {
    * Currency and ID cannot be passed in at the same time.
    *
    * @param {Object=} options Options for the request:
-   * @param {Number=} options.start  Return results from rank start + 1 and above
+   * @param {Number|String=} options.start  Return results from rank start and above
    * @param {Number|String=} options.limit  Only returns limit number of results
    * @param {String=} options.sort Sort results by id, rank, volume_24h, or percent_change_24h (default is rank)
    * @param {String=} options.structure Specify the structure for the main data field. Possible values are dictionary and array (default is dictionary).
