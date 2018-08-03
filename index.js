@@ -75,7 +75,7 @@ class CoinMarketCap {
    * client.getMetadata({id: '1'}).then(console.log).catch(console.error)
    * client.getMetadata({id: [1, 2]}).then(console.log).catch(console.error)
    * client.getMetadata({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
-   * client.getMetadata({symbol: ['BTC', 'ETH]}).then(console.log).catch(console.error)
+   * client.getMetadata({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
    */
   getMetadata (args = {}) {
     return createRequest({
@@ -125,7 +125,7 @@ class CoinMarketCap {
 
     return createRequest({
       fetcher: this.fetcher,
-      url: `${this.url}/cryptocurrency/listings/latest}`,
+      url: `${this.url}/cryptocurrency/listings/latest`,
       config: this.config,
       query: { start, limit, convert, sort, 'sort_dir': sortDir, 'cryptocurrency_type': cryptocurrencyType }
     })
@@ -144,7 +144,7 @@ class CoinMarketCap {
    * client.getQuotes({id: '1'}).then(console.log).catch(console.error)
    * client.getQuotes({id: [1, 2], convert: 'USD,EUR'}).then(console.log).catch(console.error)
    * client.getQuotes({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
-   * client.getQuotes({symbol: ['BTC', 'ETH]}).then(console.log).catch(console.error)
+   * client.getQuotes({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
    */
   getQuotes (args = {}) {
     let convert = args.convert
