@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>coinmarketcap-api 2.3.1 | Documentation</title>
+  <title>coinmarketcap-api 2.3.2 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>coinmarketcap-api</h3>
-          <div class='mb1'><code>2.3.1</code></div>
+          <div class='mb1'><code>2.3.2</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -35,9 +35,9 @@
               
                 
                 <li><a
-                  href='#getlistings'
+                  href='#getidmap'
                   class="">
-                  getListings
+                  getIdMap
                   
                 </a>
                 
@@ -45,9 +45,29 @@
               
                 
                 <li><a
-                  href='#getticker'
+                  href='#getmetadata'
                   class="">
-                  getTicker
+                  getMetadata
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#gettickers'
+                  class="">
+                  getTickers
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getquotes'
+                  class="">
+                  getQuotes
                   
                 </a>
                 
@@ -88,7 +108,7 @@
 
   
 
-  <div class='pre p1 fill-light mt0'>constructor(Options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  <div class='pre p1 fill-light mt0'>constructor(apiKey: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, Options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
   
   
 
@@ -102,6 +122,15 @@
   
     <div class='py1 quiet mt1 prose-big'>Parameters</div>
     <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>apiKey</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    API key for accessing the CoinMarketCap API
+
+          </div>
+          
+        </div>
       
         <div class='space-bottom0'>
           <div>
@@ -127,7 +156,7 @@
                 <tr>
   <td class='break-word'><span class='code bold'>Options.version</span> <code class='quiet'>any</code>
   
-    (default <code>&#39;v2&#39;</code>)
+    (default <code>&#39;v1&#39;</code>)
   </td>
   <td class='break-word'><span></span></td>
 </tr>
@@ -185,74 +214,18 @@
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='getlistings'>
-      getListings
+    <h3 class='fl m0' id='getidmap'>
+      getIdMap
     </h3>
     
     
   </div>
   
 
-  <p>Get all active cryptocurrency listings</p>
+  <p>Get a paginated list of all cryptocurrencies by CoinMarketCap ID.</p>
 
 
-  <div class='pre p1 fill-light mt0'>getListings()</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap()
-client.getListings().then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='getticker'>
-      getTicker
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Get ticker information.
-Start and limit options can only be used when currency or ID is not given.
-Currency and ID cannot be passed in at the same time.</p>
-
-
-  <div class='pre p1 fill-light mt0'>getTicker(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  <div class='pre p1 fill-light mt0'>getIdMap(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
   
   
 
@@ -297,7 +270,20 @@ Currency and ID cannot be passed in at the same time.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.start</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?</code>
+  <td class='break-word'><span class='code bold'>options.listing_status</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  
+    (default <code>&quot;active&quot;</code>)
+  </td>
+  <td class='break-word'><span>active or inactive coins
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.start</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+  
+    (default <code>1</code>)
   </td>
   <td class='break-word'><span>Return results from rank start and above
 </span></td>
@@ -315,45 +301,9 @@ Currency and ID cannot be passed in at the same time.</p>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.sort</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  <td class='break-word'><span class='code bold'>options.symbol</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?</code>
   </td>
-  <td class='break-word'><span>Sort results by id, rank, volume_24h, or percent_change_24h (default is rank)
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.structure</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
-  </td>
-  <td class='break-word'><span>Specify the structure for the main data field. Possible values are dictionary and array (default is dictionary).
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
-  </td>
-  <td class='break-word'><span>Return price, 24h volume, and market cap in terms of another currency
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.currency</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
-  </td>
-  <td class='break-word'><span>Return only specific currency
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.id</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>?</code>
-  </td>
-  <td class='break-word'><span>Return only specific currency associated with its ID from listings
+  <td class='break-word'><span>Comma separated list of symbols, will ignore the other options
 </span></td>
 </tr>
 
@@ -377,12 +327,417 @@ Currency and ID cannot be passed in at the same time.</p>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap()
-client.getTicker({<span class="hljs-attr">limit</span>: <span class="hljs-number">3</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-string">'EUR'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getTicker({<span class="hljs-attr">start</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">5</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getTicker({<span class="hljs-attr">currency</span>: <span class="hljs-string">'BTC'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-string">'JPY'</span>, <span class="hljs-attr">id</span>: <span class="hljs-number">2</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap(<span class="hljs-string">'api key'</span>)
+client.getIdMap().then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getIdMap({<span class="hljs-attr">listing_status</span>: <span class="hljs-string">'inactive'</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getIdMap({<span class="hljs-attr">symbol</span>: <span class="hljs-string">'BTC,ETH'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH'</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='getmetadata'>
+      getMetadata
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Get static metadata for one or more cryptocurrencies.
+Either id or symbol is required, but passing in both is not allowed.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getMetadata(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(any
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+	    Options for the request:
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)?</code>
+  </td>
+  <td class='break-word'><span>One or more comma separated cryptocurrency IDs
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.symbol</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+  </td>
+  <td class='break-word'><span>One or more comma separated cryptocurrency symbols
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap(<span class="hljs-string">'api key'</span>)
+client.getMetadata({<span class="hljs-attr">id</span>: <span class="hljs-string">'1'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getMetadata({<span class="hljs-attr">id</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getMetadata({<span class="hljs-attr">symbol</span>: <span class="hljs-string">'BTC,ETH'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getMetadata({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH]}).then(console.log).catch(console.error)</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='gettickers'>
+      getTickers
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Get information on all tickers.
+Start and limit options can only be used when currency or ID is not given.
+Currency and ID cannot be passed in at the same time.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getTickers(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(any
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+	    Options for the request
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.start</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+  
+    (default <code>1</code>)
+  </td>
+  <td class='break-word'><span>Return results from rank start and above
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.limit</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+  
+    (default <code>100</code>)
+  </td>
+  <td class='break-word'><span>Only returns limit number of results 
+[
+1..5000
+]
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+  
+    (default <code>&quot;USD&quot;</code>)
+  </td>
+  <td class='break-word'><span>Return info in terms of another currency
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.sort</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  
+    (default <code>&quot;market_cap&quot;</code>)
+  </td>
+  <td class='break-word'><span>Sort results by the options at 
+<a href="https://pro.coinmarketcap.com/api/v1#operation/getV1CryptocurrencyListingsLatest">https://pro.coinmarketcap.com/api/v1#operation/getV1CryptocurrencyListingsLatest</a>
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.sort_dir</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  </td>
+  <td class='break-word'><span>Direction in which to order cryptocurrencies ("asc" | "desc")
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.cryptocurrency_type</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  
+    (default <code>&quot;all&quot;</code>)
+  </td>
+  <td class='break-word'><span>Type of cryptocurrency to include ("all" | "coins" | "tokens")
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap(<span class="hljs-string">'api key'</span>)
+client.getTickers({<span class="hljs-attr">limit</span>: <span class="hljs-number">3</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getTickers({<span class="hljs-attr">convert</span>: <span class="hljs-string">'EUR'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getTickers({<span class="hljs-attr">start</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">5</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getTickers({<span class="hljs-attr">sort</span>: <span class="hljs-string">'name'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='getquotes'>
+      getQuotes
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Get latest market quote for 1 or more cryptocurrencies.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getQuotes(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(any
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+	    Options for the request:
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)?</code>
+  </td>
+  <td class='break-word'><span>One or more comma separated cryptocurrency IDs
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.symbol</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?</code>
+  </td>
+  <td class='break-word'><span>One or more comma separated cryptocurrency symbols
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+  
+    (default <code>&quot;USD&quot;</code>)
+  </td>
+  <td class='break-word'><span>Return quotes in terms of another currency
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap(<span class="hljs-string">'api key'</span>)
+client.getQuotes({<span class="hljs-attr">id</span>: <span class="hljs-string">'1'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getQuotes({<span class="hljs-attr">id</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], <span class="hljs-attr">convert</span>: <span class="hljs-string">'USD,EUR'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getQuotes({<span class="hljs-attr">symbol</span>: <span class="hljs-string">'BTC,ETH'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getQuotes({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH]}).then(console.log).catch(console.error)</span></pre>
     
   
 
@@ -412,7 +767,7 @@ client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-stri
   <p>Get global information</p>
 
 
-  <div class='pre p1 fill-light mt0'>getGlobal(convert: any, options: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</div>
+  <div class='pre p1 fill-light mt0'>getGlobal(convert: any, options: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</div>
   
   
 
@@ -437,8 +792,8 @@ client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-stri
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</code>
-	    Options for the request
+            <span class='code bold'>options</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</code>
+	    Options for the request:
 
           </div>
           
@@ -456,9 +811,11 @@ client.getTicker({<span class="hljs-attr">convert</span>: <span class="hljs-stri
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  <td class='break-word'><span class='code bold'>options.convert</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+  
+    (default <code>&quot;USD&quot;</code>)
   </td>
-  <td class='break-word'><span>Return price, 24h volume, and market cap in terms of another currency
+  <td class='break-word'><span>Return quotes in terms of another currency
 </span></td>
 </tr>
 
