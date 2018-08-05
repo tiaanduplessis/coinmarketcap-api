@@ -178,7 +178,7 @@ class CoinMarketCap {
       convert = { convert: convert.toUpperCase() }
     }
 
-    if (convert.convert instanceof Array) {
+    if (convert && convert.convert instanceof Array) {
       convert.convert = convert.convert.join(',')
     }
 

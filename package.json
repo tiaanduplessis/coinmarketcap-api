@@ -30,6 +30,7 @@
   "author": "tiaanduplessis <tiaanduplessis@hotmail.com>",
   "devDependencies": {
     "documentation": "^7.1.0",
+    "dotenv": "^6.0.0",
     "husky": "^0.14.3",
     "jest": "^23.0.1",
     "jest-chain": "^1.0.3",
