@@ -33,7 +33,7 @@ test('getTickers should have correct response structure and type', async () => {
 test('should get latest tickers', async () => {
   const client = new CoinMarketCap(API_KEY)
   const ticker1 = await client.getTickers()
-  const ticker2 = await client.getTickers({limit: 10})
+  const ticker2 = await client.getTickers({ limit: 10 })
 
   expect(typeof ticker1).toBe('object')
   expect(typeof ticker2).toBe('object')
@@ -55,7 +55,7 @@ test('should get latest global', async () => {
 
 test('should get ID map', async () => {
   const client = new CoinMarketCap(API_KEY)
-  const map = await client.getIdMap({symbol: ['BTC', 'ETH']})
+  const map = await client.getIdMap({ symbol: ['BTC', 'ETH'] })
 
   expect(typeof map).toBe('object')
   expect(map).toContainAllKeys(['data', 'status'])
@@ -72,7 +72,7 @@ test('should get ID map', async () => {
 
 test('should get quotes', async () => {
   const client = new CoinMarketCap(API_KEY)
-  const quotes = await client.getQuotes({symbol: ['BTC', 'ETH']})
+  const quotes = await client.getQuotes({ symbol: ['BTC', 'ETH'] })
 
   expect(typeof quotes).toBe('object')
   expect(quotes).toContainAllKeys(['data', 'status'])
@@ -104,7 +104,7 @@ test('should get quotes', async () => {
 
 test('should get metadata', async () => {
   const client = new CoinMarketCap(API_KEY)
-  const metadata = await client.getMetadata({symbol: ['BTC', 'ETH']})
+  const metadata = await client.getMetadata({ symbol: ['BTC', 'ETH'] })
 
   expect(typeof metadata).toBe('object')
   expect(metadata).toContainAllKeys(['data', 'status'])
