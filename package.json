@@ -28,6 +28,9 @@
     "setupTestFrameworkScriptFile": "./test.js"
   },
   "author": "Tiaan du Plessis",
+  "contributors": [
+    "Abhinav Kasamsetty"
+  ],
   "devDependencies": {
     "documentation": "^8.1.2",
     "dotenv": "^6.0.0",
