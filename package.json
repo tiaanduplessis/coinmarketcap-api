@@ -1,6 +1,6 @@
 {
   "name": "coinmarketcap-api",
-  "version": "2.3.2",
+  "version": "3.0.0",
   "description": "CoinMarketCap API wrapper for node",
   "license": "MIT",
   "repository": {
