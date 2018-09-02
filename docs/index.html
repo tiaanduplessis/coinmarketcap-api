@@ -8,6 +8,7 @@
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
   <link href='assets/github.css' type='text/css' rel='stylesheet' />
   <link href='assets/split.css' type='text/css' rel='stylesheet' />
+  <meta name='description' content='CoinMarketCap API wrapper for node'>
 </head>
 <body class='documentation m0'>
     <div class='flex'>
@@ -93,7 +94,7 @@
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -107,8 +108,10 @@
   
 
   
-
-  <div class='pre p1 fill-light mt0'>constructor(apiKey: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, Options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>constructor(apiKey: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, Options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+   
   
   
 
@@ -206,10 +209,9 @@
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -224,8 +226,10 @@
 
   <p>Get a paginated list of all cryptocurrencies by CoinMarketCap ID.</p>
 
-
-  <div class='pre p1 fill-light mt0'>getIdMap(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>getIdMap(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+   
   
   
 
@@ -270,7 +274,7 @@
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.listing_status</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  <td class='break-word'><span class='code bold'>options.listingStatus</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
   
     (default <code>&quot;active&quot;</code>)
   </td>
@@ -329,7 +333,7 @@
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> CoinMarketCap(<span class="hljs-string">'api key'</span>)
 client.getIdMap().then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getIdMap({<span class="hljs-attr">listing_status</span>: <span class="hljs-string">'inactive'</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getIdMap({<span class="hljs-attr">listingStatus</span>: <span class="hljs-string">'inactive'</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getIdMap({<span class="hljs-attr">symbol</span>: <span class="hljs-string">'BTC,ETH'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH'</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
     
@@ -342,10 +346,9 @@ client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-strin
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -361,8 +364,10 @@ client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-strin
   <p>Get static metadata for one or more cryptocurrencies.
 Either id or symbol is required, but passing in both is not allowed.</p>
 
-
-  <div class='pre p1 fill-light mt0'>getMetadata(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>getMetadata(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+   
   
   
 
@@ -446,7 +451,7 @@ Either id or symbol is required, but passing in both is not allowed.</p>
 client.getMetadata({<span class="hljs-attr">id</span>: <span class="hljs-string">'1'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getMetadata({<span class="hljs-attr">id</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getMetadata({<span class="hljs-attr">symbol</span>: <span class="hljs-string">'BTC,ETH'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getMetadata({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH]}).then(console.log).catch(console.error)</span></pre>
+client.getMetadata({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH'</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
     
   
 
@@ -457,10 +462,9 @@ client.getMetadata({<span class="hljs-attr">symbol</span>: [<span class="hljs-st
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -477,8 +481,10 @@ client.getMetadata({<span class="hljs-attr">symbol</span>: [<span class="hljs-st
 Start and limit options can only be used when currency or ID is not given.
 Currency and ID cannot be passed in at the same time.</p>
 
-
-  <div class='pre p1 fill-light mt0'>getTickers(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>getTickers(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+   
   
   
 
@@ -571,7 +577,7 @@ Currency and ID cannot be passed in at the same time.</p>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.sort_dir</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
+  <td class='break-word'><span class='code bold'>options.sortDir</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>?</code>
   </td>
   <td class='break-word'><span>Direction in which to order cryptocurrencies ("asc" | "desc")
 </span></td>
@@ -580,7 +586,7 @@ Currency and ID cannot be passed in at the same time.</p>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.cryptocurrency_type</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  <td class='break-word'><span class='code bold'>options.cryptocurrencyType</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
   
     (default <code>&quot;all&quot;</code>)
   </td>
@@ -623,10 +629,9 @@ client.getTickers({<span class="hljs-attr">sort</span>: <span class="hljs-string
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -641,8 +646,10 @@ client.getTickers({<span class="hljs-attr">sort</span>: <span class="hljs-string
 
   <p>Get latest market quote for 1 or more cryptocurrencies.</p>
 
-
-  <div class='pre p1 fill-light mt0'>getQuotes(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>getQuotes(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+   
   
   
 
@@ -737,7 +744,7 @@ client.getTickers({<span class="hljs-attr">sort</span>: <span class="hljs-string
 client.getQuotes({<span class="hljs-attr">id</span>: <span class="hljs-string">'1'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getQuotes({<span class="hljs-attr">id</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], <span class="hljs-attr">convert</span>: <span class="hljs-string">'USD,EUR'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getQuotes({<span class="hljs-attr">symbol</span>: <span class="hljs-string">'BTC,ETH'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getQuotes({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH]}).then(console.log).catch(console.error)</span></pre>
+client.getQuotes({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH'</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
     
   
 
@@ -748,10 +755,9 @@ client.getQuotes({<span class="hljs-attr">symbol</span>: [<span class="hljs-stri
   
 </section>
 
-          
         
           
-            <section class='p2 mb2 clearfix bg-white minishadow'>
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
   <div class='clearfix'>
@@ -766,8 +772,10 @@ client.getQuotes({<span class="hljs-attr">symbol</span>: [<span class="hljs-stri
 
   <p>Get global information</p>
 
-
-  <div class='pre p1 fill-light mt0'>getGlobal(convert: any, options: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</div>
+ 
+  
+    <div class='pre p1 fill-light mt0'>getGlobal(convert: any, options: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</div>
+   
   
   
 
@@ -852,7 +860,6 @@ client.getGlobal({<span class="hljs-attr">convert</span>: <span class="hljs-stri
   
 </section>
 
-          
         
       </div>
     </div>

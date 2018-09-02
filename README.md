@@ -45,15 +45,26 @@ Check out the [CoinMarketCap API documentation](https://coinmarketcap.com/api/) 
 #### Table of Contents
 
 -   [constructor](#constructor)
+    -   [Parameters](#parameters)
 -   [getIdMap](#getidmap)
+    -   [Parameters](#parameters-1)
+    -   [Examples](#examples)
 -   [getMetadata](#getmetadata)
+    -   [Parameters](#parameters-2)
+    -   [Examples](#examples-1)
 -   [getTickers](#gettickers)
+    -   [Parameters](#parameters-3)
+    -   [Examples](#examples-2)
 -   [getQuotes](#getquotes)
+    -   [Parameters](#parameters-4)
+    -   [Examples](#examples-3)
 -   [getGlobal](#getglobal)
+    -   [Parameters](#parameters-5)
+    -   [Examples](#examples-4)
 
 ### constructor
 
-**Parameters**
+#### Parameters
 
 -   `apiKey` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** API key for accessing the CoinMarketCap API
 -   `Options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the CoinMarketCap instance (optional, default `{}`)
@@ -65,21 +76,21 @@ Check out the [CoinMarketCap API documentation](https://coinmarketcap.com/api/) 
 
 Get a paginated list of all cryptocurrencies by CoinMarketCap ID.
 
-**Parameters**
+#### Parameters
 
 -   `args`   (optional, default `{}`)
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request:
-    -   `options.listing_status` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** active or inactive coins (optional, default `"active"`)
+    -   `options.listingStatus` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** active or inactive coins (optional, default `"active"`)
     -   `options.start` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Return results from rank start and above (optional, default `1`)
     -   `options.limit` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Only returns limit number of results
     -   `options.symbol` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Comma separated list of symbols, will ignore the other options
 
-**Examples**
+#### Examples
 
 ```javascript
 const client = new CoinMarketCap('api key')
 client.getIdMap().then(console.log).catch(console.error)
-client.getIdMap({listing_status: 'inactive', limit: 10}).then(console.log).catch(console.error)
+client.getIdMap({listingStatus: 'inactive', limit: 10}).then(console.log).catch(console.error)
 client.getIdMap({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
 client.getIdMap({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
 ```
@@ -89,21 +100,21 @@ client.getIdMap({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
 Get static metadata for one or more cryptocurrencies.
 Either id or symbol is required, but passing in both is not allowed.
 
-**Parameters**
+#### Parameters
 
 -   `args`   (optional, default `{}`)
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request:
     -   `options.id` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))?** One or more comma separated cryptocurrency IDs
     -   `options.symbol` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** One or more comma separated cryptocurrency symbols
 
-**Examples**
+#### Examples
 
 ```javascript
 const client = new CoinMarketCap('api key')
 client.getMetadata({id: '1'}).then(console.log).catch(console.error)
 client.getMetadata({id: [1, 2]}).then(console.log).catch(console.error)
 client.getMetadata({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
-client.getMetadata({symbol: ['BTC', 'ETH]}).then(console.log).catch(console.error)
+client.getMetadata({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
 ```
 
 ### getTickers
@@ -112,7 +123,7 @@ Get information on all tickers.
 Start and limit options can only be used when currency or ID is not given.
 Currency and ID cannot be passed in at the same time.
 
-**Parameters**
+#### Parameters
 
 -   `args`   (optional, default `{}`)
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request
@@ -120,10 +131,10 @@ Currency and ID cannot be passed in at the same time.
     -   `options.limit` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Only returns limit number of results [1..5000] (optional, default `100`)
     -   `options.convert` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Return info in terms of another currency (optional, default `"USD"`)
     -   `options.sort` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Sort results by the options at <https://pro.coinmarketcap.com/api/v1#operation/getV1CryptocurrencyListingsLatest> (optional, default `"market_cap"`)
-    -   `options.sort_dir` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Direction in which to order cryptocurrencies ("asc" | "desc")
-    -   `options.cryptocurrency_type` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Type of cryptocurrency to include ("all" | "coins" | "tokens") (optional, default `"all"`)
+    -   `options.sortDir` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Direction in which to order cryptocurrencies ("asc" | "desc")
+    -   `options.cryptocurrencyType` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Type of cryptocurrency to include ("all" | "coins" | "tokens") (optional, default `"all"`)
 
-**Examples**
+#### Examples
 
 ```javascript
 const client = new CoinMarketCap('api key')
@@ -137,7 +148,7 @@ client.getTickers({sort: 'name'}).then(console.log).catch(console.error)
 
 Get latest market quote for 1 or more cryptocurrencies.
 
-**Parameters**
+#### Parameters
 
 -   `args`   (optional, default `{}`)
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request:
@@ -145,27 +156,27 @@ Get latest market quote for 1 or more cryptocurrencies.
     -   `options.symbol` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** One or more comma separated cryptocurrency symbols
     -   `options.convert` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Return quotes in terms of another currency (optional, default `"USD"`)
 
-**Examples**
+#### Examples
 
 ```javascript
 const client = new CoinMarketCap('api key')
 client.getQuotes({id: '1'}).then(console.log).catch(console.error)
 client.getQuotes({id: [1, 2], convert: 'USD,EUR'}).then(console.log).catch(console.error)
 client.getQuotes({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
-client.getQuotes({symbol: ['BTC', 'ETH]}).then(console.log).catch(console.error)
+client.getQuotes({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
 ```
 
 ### getGlobal
 
 Get global information
 
-**Parameters**
+#### Parameters
 
 -   `convert`  
 -   `options` **([Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Options for the request:
     -   `options.convert` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Return quotes in terms of another currency (optional, default `"USD"`)
 
-**Examples**
+#### Examples
 
 ```javascript
 const client = new CoinMarketCap()
