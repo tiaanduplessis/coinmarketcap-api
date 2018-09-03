@@ -36,7 +36,7 @@ client.getTickers().then(console.log).catch(console.error)
 client.getGlobal().then(console.log).catch(console.error)
 ```
 
-Check out the [CoinMarketCap API documentation](https://coinmarketcap.com/api/) for more information!
+Check out the [CoinMarketCap Pro API documentation](https://pro.coinmarketcap.com/api/v1#section/Introduction) for more information!
 
 ## API
 
