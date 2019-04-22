@@ -2,20 +2,20 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>coinmarketcap-api 2.3.2 | Documentation</title>
-  <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
-  <link href='assets/style.css' type='text/css' rel='stylesheet' />
-  <link href='assets/github.css' type='text/css' rel='stylesheet' />
-  <link href='assets/split.css' type='text/css' rel='stylesheet' />
+  <title>coinmarketcap-api 3.0.0 | Documentation</title>
   <meta name='description' content='CoinMarketCap API wrapper for node'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' rel='stylesheet' />
+  <link href='assets/style.css' rel='stylesheet' />
+  <link href='assets/github.css' rel='stylesheet' />
+  <link href='assets/split.css' rel='stylesheet' />
 </head>
 <body class='documentation m0'>
     <div class='flex'>
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>coinmarketcap-api</h3>
-          <div class='mb1'><code>2.3.2</code></div>
+          <div class='mb1'><code>3.0.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -87,7 +87,7 @@
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
-            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+            <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
           </div>
         </div>
       </div>
@@ -108,10 +108,7 @@
   
 
   
- 
-  
     <div class='pre p1 fill-light mt0'>constructor(apiKey: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, Options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
-   
   
   
 
@@ -207,8 +204,11 @@
   
 
   
+
+  
 </section>
 
+          
         
           
           <section class='p2 mb2 clearfix bg-white minishadow'>
@@ -226,10 +226,7 @@
 
   <p>Get a paginated list of all cryptocurrencies by CoinMarketCap ID.</p>
 
- 
-  
     <div class='pre p1 fill-light mt0'>getIdMap(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
-   
   
   
 
@@ -344,8 +341,11 @@ client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-strin
   
 
   
+
+  
 </section>
 
+          
         
           
           <section class='p2 mb2 clearfix bg-white minishadow'>
@@ -364,10 +364,7 @@ client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-strin
   <p>Get static metadata for one or more cryptocurrencies.
 Either id or symbol is required, but passing in both is not allowed.</p>
 
- 
-  
     <div class='pre p1 fill-light mt0'>getMetadata(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
-   
   
   
 
@@ -460,8 +457,11 @@ client.getMetadata({<span class="hljs-attr">symbol</span>: [<span class="hljs-st
   
 
   
+
+  
 </section>
 
+          
         
           
           <section class='p2 mb2 clearfix bg-white minishadow'>
@@ -481,10 +481,7 @@ client.getMetadata({<span class="hljs-attr">symbol</span>: [<span class="hljs-st
 Start and limit options can only be used when currency or ID is not given.
 Currency and ID cannot be passed in at the same time.</p>
 
- 
-  
     <div class='pre p1 fill-light mt0'>getTickers(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
-   
   
   
 
@@ -545,9 +542,7 @@ Currency and ID cannot be passed in at the same time.</p>
     (default <code>100</code>)
   </td>
   <td class='break-word'><span>Only returns limit number of results 
-[
-1..5000
-]
+[1..5000]
 </span></td>
 </tr>
 
@@ -627,8 +622,11 @@ client.getTickers({<span class="hljs-attr">sort</span>: <span class="hljs-string
   
 
   
+
+  
 </section>
 
+          
         
           
           <section class='p2 mb2 clearfix bg-white minishadow'>
@@ -646,10 +644,7 @@ client.getTickers({<span class="hljs-attr">sort</span>: <span class="hljs-string
 
   <p>Get latest market quote for 1 or more cryptocurrencies.</p>
 
- 
-  
     <div class='pre p1 fill-light mt0'>getQuotes(args: any, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
-   
   
   
 
@@ -753,8 +748,11 @@ client.getQuotes({<span class="hljs-attr">symbol</span>: [<span class="hljs-stri
   
 
   
+
+  
 </section>
 
+          
         
           
           <section class='p2 mb2 clearfix bg-white minishadow'>
@@ -772,10 +770,7 @@ client.getQuotes({<span class="hljs-attr">symbol</span>: [<span class="hljs-stri
 
   <p>Get global information</p>
 
- 
-  
     <div class='pre p1 fill-light mt0'>getGlobal(convert: any, options: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)?)</div>
-   
   
   
 
@@ -858,8 +853,11 @@ client.getGlobal({<span class="hljs-attr">convert</span>: <span class="hljs-stri
   
 
   
+
+  
 </section>
 
+          
         
       </div>
     </div>
