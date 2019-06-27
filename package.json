@@ -32,7 +32,7 @@
     "Abhinav Kasamsetty"
   ],
   "devDependencies": {
-    "documentation": "10.1.0",
+    "documentation": "11.0.1",
     "dotenv": "7.0.0",
     "husky": "2.4.1",
     "jest": "24.7.1",
