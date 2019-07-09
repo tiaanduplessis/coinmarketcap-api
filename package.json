@@ -37,7 +37,7 @@
     "husky": "3.0.0",
     "jest": "24.7.1",
     "jest-chain": "1.1.2",
-    "jest-extended": "0.11.1",
+    "jest-extended": "0.11.2",
     "standard": "12.0.1"
   },
   "dependencies": {
