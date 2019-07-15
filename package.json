@@ -35,7 +35,7 @@
     "documentation": "10.1.0",
     "dotenv": "7.0.0",
     "husky": "3.0.0",
-    "jest": "24.7.1",
+    "jest": "24.8.0",
     "jest-chain": "1.1.2",
     "jest-extended": "0.11.1",
     "standard": "12.0.1"
