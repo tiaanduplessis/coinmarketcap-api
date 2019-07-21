@@ -1,5 +1,12 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":preserveSemverRanges"
+  ],
+   "minor": {
+      "enabled": false
+    },
+   "patch": {
+      "enabled": false
+   }
 }
