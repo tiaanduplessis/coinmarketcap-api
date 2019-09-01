@@ -58,7 +58,7 @@ class CoinMarketCap {
       fetcher: this.fetcher,
       url: `${this.url}/cryptocurrency/map`,
       config: this.config,
-      query: { 'listing_status': listingStatus, start, limit, symbol }
+      query: { listing_status: listingStatus, start, limit, symbol }
     })
   }
 
@@ -127,7 +127,7 @@ class CoinMarketCap {
       fetcher: this.fetcher,
       url: `${this.url}/cryptocurrency/listings/latest`,
       config: this.config,
-      query: { start, limit, convert, sort, 'sort_dir': sortDir, 'cryptocurrency_type': cryptocurrencyType }
+      query: { start, limit, convert, sort, sort_dir: sortDir, cryptocurrency_type: cryptocurrencyType }
     })
   }
 
@@ -148,7 +148,7 @@ class CoinMarketCap {
    */
   getQuotes (args = {}) {
     let convert = args.convert
-    let { id, symbol } = sanitizeIdAndSymbol(args.id, args.symbol)
+    const { id, symbol } = sanitizeIdAndSymbol(args.id, args.symbol)
 
     if (convert instanceof Array) {
       convert = convert.join(',')

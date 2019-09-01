@@ -1,6 +1,6 @@
 {
   "name": "coinmarketcap-api",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "CoinMarketCap API wrapper for node",
   "license": "MIT",
   "repository": {
@@ -18,14 +18,15 @@
     "test:cov": "npm run test -- --coverage",
     "lint": "standard --fix ./*.js",
     "start": "npm run test",
-    "precommit": "npm run lint",
     "pretest": "npm run lint",
     "docs": "npm run docs:readme && npm run docs:html",
     "docs:readme": "documentation readme index.js --section=API",
     "docs:html": "documentation build index.js -f html -o docs"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./test.js"
+    "setupFilesAfterEnv": [
+      "./test.js"
+    ]
   },
   "author": "Tiaan du Plessis",
   "contributors": [
@@ -37,8 +38,8 @@
     "husky": "3.0.0",
     "jest": "24.8.0",
     "jest-chain": "1.1.2",
-    "jest-extended": "0.11.1",
-    "standard": "13.1.0"
+    "jest-extended": "^0.11.2",
+    "standard": "14.1.0"
   },
   "dependencies": {
     "node-fetch": "^2.3.0",
@@ -55,5 +56,10 @@
     "coinmarketcap",
     "bitcoin",
     "cryptocurrency"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
 }
