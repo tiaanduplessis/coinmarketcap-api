@@ -62,7 +62,7 @@ test('should get ID map', async () => {
   expect(map).toHaveProperty('status.timestamp')
   expect(map).toHaveProperty('status.error_code')
   expect(Array.isArray(map.data)).toBeTruthy()
-  for (let info of map.data) {
+  for (const info of map.data) {
     expect(typeof info).toBe('object')
     expect(info).toHaveProperty('id')
     expect(info).toHaveProperty('name')
@@ -79,8 +79,8 @@ test('should get quotes', async () => {
   expect(quotes).toHaveProperty('status.timestamp')
   expect(quotes).toHaveProperty('status.error_code')
   expect(typeof quotes.data).toBe('object')
-  for (let key of Object.keys(quotes.data)) {
-    let info = quotes.data[key]
+  for (const key of Object.keys(quotes.data)) {
+    const info = quotes.data[key]
     expect(typeof info).toBe('object')
     expect(info).toHaveProperty('id')
     expect(info).toHaveProperty('name')
@@ -111,8 +111,8 @@ test('should get metadata', async () => {
   expect(metadata).toHaveProperty('status.timestamp')
   expect(metadata).toHaveProperty('status.error_code')
   expect(typeof metadata.data).toBe('object')
-  for (let key of Object.keys(metadata.data)) {
-    let info = metadata.data[key]
+  for (const key of Object.keys(metadata.data)) {
+    const info = metadata.data[key]
     expect(typeof info).toBe('object')
     expect(info).toHaveProperty('id')
     expect(info).toHaveProperty('name')
@@ -123,7 +123,9 @@ test('should get metadata', async () => {
     expect(info).toHaveProperty('urls')
     expect(info.urls).toContainAllKeys([
       'website',
-      'twitter', 'reddit',
+      'technical_doc',
+      'twitter',
+      'reddit',
       'message_board',
       'announcement',
       'chat',
@@ -132,91 +134,3 @@ test('should get metadata', async () => {
     ])
   }
 })
-
-// test('should get Bitcoin ticker from currency symbol', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-//   const ticker = await client.getTickers({currency: 'BTC'})
-
-//   expect(typeof ticker).toBe('object')
-//   expect(ticker.data.id).toBe(1)
-//   expect(ticker.data.name).toMatch('Bitcoin')
-//   expect(ticker.data.symbol).toMatch('BTC')
-// })
-
-// test('should get Bitcoin ticker from its listings ID', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-//   const ticker = await client.getTicker({ id: 1 })
-
-//   expect(typeof ticker).toBe('object')
-//   expect(ticker.data.id).toBe(1)
-//   expect(ticker.data.name).toMatch('Bitcoin')
-//   expect(ticker.data.symbol).toMatch('BTC')
-// })
-
-// test('should get tickers sorted by ID', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-//   const ticker = await client.getTicker({sort: 'id'})
-
-//   let data = Object.values(ticker.data)
-//   for (let i = 1; i < data.length; i++) {
-//     expect(data[i].id).toBeGreaterThan(data[i - 1].id)
-//   }
-// })
-
-// test('should return main data field as an array', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-//   const ticker = await client.getTicker({structure: 'array'})
-
-//   expect(Array.isArray(ticker.data)).toBeTruthy()
-// })
-
-// test('should result in errors due to wrong parameter usage', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-
-//   try {
-//     await client.getTicker({currency: 'BTC', id: 1})
-//   } catch (e) {
-//     expect(e.toString()).toMatch('Error: Currency and ID cannot be passed in at the same time.')
-//   }
-
-//   try {
-//     await client.getTicker({start: 1, currency: 'ETH'})
-//   } catch (e) {
-//     expect(e.toString()).toMatch('Error: Start, limit, and sort options can only be used when currency or ID is not given.')
-//   }
-// })
-
-// test('should get latest listings', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-//   const listings = await client.getListings()
-
-//   expect(typeof listings).toBe('object')
-//   expect(Array.isArray(listings.data)).toBe(true)
-// })
-
-// test('should result in error if limit = 0 and start specified', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-
-//   try {
-//     await client.getTicker({start: 1, limit: 0})
-//   } catch (e) {
-//     expect(e.toString()).toMatch('Error: Start and limit = 0 cannot be passed in at the same time.')
-//   }
-// })
-
-// test('should return data field as an array if specified structure as an array', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-//   const ticker = await client.getTicker({structure: 'array'})
-
-//   expect(ticker.data).toBeArray()
-// })
-
-// test('should return all tickers', async () => {
-//   const client = new CoinMarketCap(API_KEY)
-//   const totalActiveCryptocurrencies = await client.getGlobal().then(res => res.data['active_cryptocurrencies'])
-//   const allTickers1 = await client.getTicker({limit: '0'}).then(res => Object.keys(res.data).length)
-//   const allTickers2 = await client.getTicker({limit: '0', structure: 'array'}).then(res => res.data.length)
-
-//   expect(allTickers1).toBe(totalActiveCryptocurrencies)
-//   expect(allTickers2).toBe(totalActiveCryptocurrencies)
-// })
