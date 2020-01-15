@@ -84,6 +84,7 @@ Get a paginated list of all cryptocurrencies by CoinMarketCap ID.
     -   `options.start` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Return results from rank start and above (optional, default `1`)
     -   `options.limit` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Only returns limit number of results
     -   `options.symbol` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Comma separated list of symbols, will ignore the other options
+    -   `options.sort` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Sort results by the options at <https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyMap> (optional, default `"id"`)
 
 #### Examples
 
@@ -93,6 +94,7 @@ client.getIdMap().then(console.log).catch(console.error)
 client.getIdMap({listingStatus: 'inactive', limit: 10}).then(console.log).catch(console.error)
 client.getIdMap({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
 client.getIdMap({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
+client.getIdMap({sort: 'cmc_rank'}).then(console.log).catch(console.error)
 ```
 
 ### getMetadata
