@@ -1,21 +1,21 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset='utf-8' />
-  <title>coinmarketcap-api 3.0.0 | Documentation</title>
+  <meta charset='utf-8'>
+  <title>coinmarketcap-api 3.1.0 | Documentation</title>
   <meta name='description' content='CoinMarketCap API wrapper for node'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='assets/bass.css' rel='stylesheet' />
-  <link href='assets/style.css' rel='stylesheet' />
-  <link href='assets/github.css' rel='stylesheet' />
-  <link href='assets/split.css' rel='stylesheet' />
+  <link href='assets/bass.css' rel='stylesheet'>
+  <link href='assets/style.css' rel='stylesheet'>
+  <link href='assets/github.css' rel='stylesheet'>
+  <link href='assets/split.css' rel='stylesheet'>
 </head>
 <body class='documentation m0'>
     <div class='flex'>
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>coinmarketcap-api</h3>
-          <div class='mb1'><code>3.0.0</code></div>
+          <div class='mb1'><code>3.1.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -310,6 +310,18 @@
 
 
               
+                <tr>
+  <td class='break-word'><span class='code bold'>options.sort</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  
+    (default <code>&quot;id&quot;</code>)
+  </td>
+  <td class='break-word'><span>Sort results by the options at 
+<a href="https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyMap">https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyMap</a>
+</span></td>
+</tr>
+
+
+              
             </tbody>
           </table>
           
@@ -332,7 +344,8 @@
 client.getIdMap().then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getIdMap({<span class="hljs-attr">listingStatus</span>: <span class="hljs-string">'inactive'</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
 client.getIdMap({<span class="hljs-attr">symbol</span>: <span class="hljs-string">'BTC,ETH'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
-client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH'</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
+client.getIdMap({<span class="hljs-attr">symbol</span>: [<span class="hljs-string">'BTC'</span>, <span class="hljs-string">'ETH'</span>]}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)
+client.getIdMap({<span class="hljs-attr">sort</span>: <span class="hljs-string">'cmc_rank'</span>}).then(<span class="hljs-built_in">console</span>.log).catch(<span class="hljs-built_in">console</span>.error)</pre>
     
   
 

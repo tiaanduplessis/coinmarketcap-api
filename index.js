@@ -39,6 +39,7 @@ class CoinMarketCap {
    * @param {Number|String=} [options.start=1] Return results from rank start and above
    * @param {Number|String=} options.limit Only returns limit number of results
    * @param {String[]|String=} options.symbol Comma separated list of symbols, will ignore the other options
+   * @param {String=} [options.sort="id"] Sort results by the options at https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyMap
    *
    * @example
    * const client = new CoinMarketCap('api key')
@@ -46,9 +47,10 @@ class CoinMarketCap {
    * client.getIdMap({listingStatus: 'inactive', limit: 10}).then(console.log).catch(console.error)
    * client.getIdMap({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
    * client.getIdMap({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
+   * client.getIdMap({sort: 'cmc_rank'}).then(console.log).catch(console.error)
    */
   getIdMap (args = {}) {
-    let { listingStatus, start, limit, symbol } = args
+    let { listingStatus, start, limit, symbol, sort } = args
 
     if (symbol instanceof Array) {
       symbol = symbol.join(',')
@@ -58,7 +60,7 @@ class CoinMarketCap {
       fetcher: this.fetcher,
       url: `${this.url}/cryptocurrency/map`,
       config: this.config,
-      query: { listing_status: listingStatus, start, limit, symbol }
+      query: { listing_status: listingStatus, start, limit, symbol, sort }
     })
   }
 
