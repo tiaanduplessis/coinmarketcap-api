@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "node-fetch": "^2.3.0",
-    "qs": "^6.7.0"
+    "qs": "^6.9.4"
   },
   "standard": {
     "env": [
