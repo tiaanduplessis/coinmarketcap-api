@@ -176,8 +176,12 @@ class CoinMarketCap {
    * client.getGlobal({convert: 'GBP'}).then(console.log).catch(console.error)
    */
   getGlobal (convert) {
-    if (typeof convert === 'string' || convert instanceof Array) {
+    if (typeof convert === 'string') {
       convert = { convert: convert.toUpperCase() }
+    }
+
+    if (convert instanceof Array) {
+      convert = { convert: convert.map(currency => currency.toUpperCase()) }
     }
 
     if (convert && convert.convert instanceof Array) {
