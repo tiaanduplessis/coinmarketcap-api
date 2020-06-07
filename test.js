@@ -40,6 +40,25 @@ test('should get latest tickers', async () => {
   expect(Object.keys(ticker2.data).length).toBe(10)
 })
 
+test('limit = 0 returns 5000 tickers', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  const ticker = await client.getTickers({ limit: 0 })
+
+  expect(Object.keys(ticker.data).length).toBeGreaterThan(0)
+})
+
+test('can pass in an array of currencies to convert for getTickers', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  const ticker = await client.getTickers({ convert: ['USD'] })
+
+  ticker.data.forEach(coin => expect(coin.quote).toContainAllKeys(['USD']))
+})
+
+test('passing in start and limit = 0 is not allowed in getTickers', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  expect(() => client.getTickers({ start: 2, limit: 0 })).toThrow(Error)
+})
+
 test('should get latest global', async () => {
   const client = new CoinMarketCap(API_KEY)
   const global = await client.getGlobal()
@@ -51,6 +70,19 @@ test('should get latest global', async () => {
   expect(global).toHaveProperty('data.active_cryptocurrencies')
   expect(global).toHaveProperty('data.quote')
   expect(global).toHaveProperty('data.active_market_pairs')
+})
+
+test('can pass in currencies in various ways to getGlobal', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  const global1 = await client.getGlobal('gbp')
+  const global2 = await client.getGlobal(['gbp'])
+  const global3 = await client.getGlobal({ convert: 'gbp' })
+  const global4 = await client.getGlobal({ convert: ['gbp'] })
+
+  expect(global1.data.quote).toHaveProperty('GBP')
+  expect(global2.data.quote).toHaveProperty('GBP')
+  expect(global3.data.quote).toHaveProperty('GBP')
+  expect(global4.data.quote).toHaveProperty('GBP')
 })
 
 test('should get ID map', async () => {
@@ -100,6 +132,30 @@ test('should get quotes', async () => {
     expect(info.quote.USD).toHaveProperty('market_cap')
     expect(info.quote.USD).toHaveProperty('last_updated')
   }
+})
+
+test('can pass in an array of currencies to convert for getQuotes', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  const quotes = await client.getQuotes({ id: [1, 2], convert: ['USD'] })
+
+  Object.values(quotes.data).forEach(coin => expect(coin.quote).toContainAllKeys(['USD']))
+})
+
+test('can pass in an array of IDs to id for getQuotes', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  const quotes = await client.getQuotes({ id: [1, 2] })
+
+  expect(quotes.data).toContainAllKeys(['1', '2'])
+})
+
+test('must pass in id or symbol to getQuotes', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  expect(() => client.getQuotes()).toThrow(Error)
+})
+
+test('cannot pass in both id and symbol to getQuotes', async () => {
+  const client = new CoinMarketCap(API_KEY)
+  expect(() => client.getQuotes({ id: 2, symbol: 'BTC' })).toThrow(Error)
 })
 
 test('should get metadata', async () => {
