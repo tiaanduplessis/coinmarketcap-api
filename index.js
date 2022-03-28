@@ -2,9 +2,6 @@
 
 const fetch = require('node-fetch')
 const qs = require('qs')
-
-const BASE_URL = 'https://pro-api.coinmarketcap.com'
-
 class CoinMarketCap {
   /**
    *
@@ -15,7 +12,7 @@ class CoinMarketCap {
    * @param {Object=} options.config = Configuration for fetch request
    *
    */
-  constructor (apiKey, { version = 'v1', fetcher = fetch, config = {} } = {}) {
+  constructor (apiKey, { version = 'v1', fetcher = fetch, config = {}, baseUrl = 'https://pro-api.coinmarketcap.com' } = {}) {
     this.apiKey = apiKey
     this.config = Object.assign({}, {
       method: 'GET',
@@ -28,7 +25,7 @@ class CoinMarketCap {
     }, config)
 
     this.fetcher = fetcher
-    this.url = `${BASE_URL}/${version}`
+    this.url = `${baseUrl}/${version}`
   }
 
   /**
