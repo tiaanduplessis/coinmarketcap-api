@@ -179,14 +179,15 @@ test('should get metadata', async () => {
     expect(info).toHaveProperty('urls')
     expect(info.urls).toContainAllKeys([
       'website',
-      'technical_doc',
       'twitter',
-      'reddit',
       'message_board',
-      'announcement',
       'chat',
+      'facebook',
       'explorer',
-      'source_code'
+      'reddit',
+      'technical_doc',
+      'source_code',
+      'announcement'
     ])
   }
 })

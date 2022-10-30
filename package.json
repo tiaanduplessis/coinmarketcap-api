@@ -1,6 +1,6 @@
 {
   "name": "coinmarketcap-api",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "CoinMarketCap API wrapper for node",
   "license": "MIT",
   "repository": {
@@ -10,6 +10,7 @@
   "homepage": "https://github.com/tiaanduplessis/coinmarketcap-api",
   "bugs": "https://github.com/tiaanduplessis/coinmarketcap-api",
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "index.js"
   ],
@@ -30,9 +31,13 @@
   },
   "author": "Tiaan du Plessis",
   "contributors": [
-    "Abhinav Kasamsetty"
+    "Abhinav Kasamsetty",
+    "Shahrad Elahi"
   ],
   "devDependencies": {
+    "@types/node": "18.11.7",
+    "@types/node-fetch": "^2.6.2",
+    "@types/qs": "^6.9.7",
     "documentation": "12.0.2",
     "dotenv": "7.0.0",
     "husky": "3.0.0",
