@@ -10,7 +10,7 @@ class CoinMarketCap {
    *
    * @param {String} apiKey API key for accessing the CoinMarketCap API
    * @param {Object=} Options Options for the CoinMarketCap instance
-   * @param {String=} options.version  Version of API. Defaults to 'v2'
+   * @param {String=} options.version  Version of API. Defaults to 'v1'
    * @param {Function=} options.fetcher fetch function to use. Defaults to node-fetch
    * @param {Object=} options.config = Configuration for fetch request
    *
