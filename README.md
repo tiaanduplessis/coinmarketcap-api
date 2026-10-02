@@ -49,18 +49,21 @@ Check out the [CoinMarketCap Pro API documentation](https://pro.coinmarketcap.co
 -   [getIdMap](#getidmap)
     -   [Parameters](#parameters-1)
     -   [Examples](#examples)
--   [getMetadata](#getmetadata)
+-   [getFiatMap](#getfiatmap)
     -   [Parameters](#parameters-2)
     -   [Examples](#examples-1)
--   [getTickers](#gettickers)
+-   [getMetadata](#getmetadata)
     -   [Parameters](#parameters-3)
     -   [Examples](#examples-2)
--   [getQuotes](#getquotes)
+-   [getTickers](#gettickers)
     -   [Parameters](#parameters-4)
     -   [Examples](#examples-3)
--   [getGlobal](#getglobal)
+-   [getQuotes](#getquotes)
     -   [Parameters](#parameters-5)
     -   [Examples](#examples-4)
+-   [getGlobal](#getglobal)
+    -   [Parameters](#parameters-6)
+    -   [Examples](#examples-5)
 
 ### constructor
 
@@ -95,6 +98,28 @@ client.getIdMap({listingStatus: 'inactive', limit: 10}).then(console.log).catch(
 client.getIdMap({symbol: 'BTC,ETH'}).then(console.log).catch(console.error)
 client.getIdMap({symbol: ['BTC', 'ETH']}).then(console.log).catch(console.error)
 client.getIdMap({sort: 'cmc_rank'}).then(console.log).catch(console.error)
+```
+
+### getFiatMap
+
+Get a mapping of supported fiat currencies to CoinMarketCap IDs.
+
+#### Parameters
+
+-   `args`   (optional, default `{}`)
+-   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Options for the request:
+    -   `options.start` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Return results from this 1-based offset (optional, default `1`)
+    -   `options.limit` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Only returns limit number of results [1..5000]
+    -   `options.sort` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Sort results by "id" or "name" (optional, default `"id"`)
+    -   `options.includeMetals` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Include precious metals (optional, default `false`)
+
+#### Examples
+
+```javascript
+const client = new CoinMarketCap('api key')
+client.getFiatMap().then(console.log).catch(console.error)
+client.getFiatMap({start: 1, limit: 10, sort: 'name'}).then(console.log).catch(console.error)
+client.getFiatMap({includeMetals: true}).then(console.log).catch(console.error)
 ```
 
 ### getMetadata

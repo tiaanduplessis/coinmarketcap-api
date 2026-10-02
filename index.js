@@ -65,6 +65,32 @@ class CoinMarketCap {
   }
 
   /**
+   * Get a mapping of supported fiat currencies to CoinMarketCap IDs.
+   *
+   * @param {Object=} options Options for the request:
+   * @param {Number|String=} [options.start=1] Return results from this 1-based offset
+   * @param {Number|String=} options.limit Only returns limit number of results [1..5000]
+   * @param {String=} [options.sort="id"] Sort results by "id" or "name"
+   * @param {Boolean=} [options.includeMetals=false] Include precious metals
+   *
+   * @example
+   * const client = new CoinMarketCap('api key')
+   * client.getFiatMap().then(console.log).catch(console.error)
+   * client.getFiatMap({start: 1, limit: 10, sort: 'name'}).then(console.log).catch(console.error)
+   * client.getFiatMap({includeMetals: true}).then(console.log).catch(console.error)
+   */
+  getFiatMap (args = {}) {
+    const { start, limit, sort, includeMetals } = args
+
+    return createRequest({
+      fetcher: this.fetcher,
+      url: `${this.url}/fiat/map`,
+      config: this.config,
+      query: { start, limit, sort, include_metals: includeMetals }
+    })
+  }
+
+  /**
    * Get static metadata for one or more cryptocurrencies.
    * Either id or symbol is required, but passing in both is not allowed.
    *

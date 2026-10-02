@@ -42,6 +42,77 @@ describe('API version', () => {
   })
 })
 
+describe('getFiatMap', () => {
+  test.each([
+    [undefined, ''],
+    [{}, ''],
+    [{ start: 2, limit: 10, sort: 'name', includeMetals: true }, 'start=2&limit=10&sort=name&include_metals=true'],
+    [{ start: '2', limit: '10', sort: 'id' }, 'start=2&limit=10&sort=id'],
+    [{ includeMetals: false }, 'include_metals=false'],
+    [{ start: undefined, limit: undefined, sort: undefined, includeMetals: undefined }, ''],
+    [{ symbol: 'USD', id: 2781, include_metals: true, listingStatus: 'active' }, '']
+  ])('serializes supported options %p', async (options, query) => {
+    const response = {
+      data: [{ id: 2781, name: 'United States Dollar', sign: '$', symbol: 'USD' }],
+      status: { error_code: 0 }
+    }
+    const json = jest.fn().mockResolvedValue(response)
+    const fetcher = jest.fn().mockResolvedValue({ json })
+    const client = new CoinMarketCap('test-api-key', { fetcher })
+
+    expect(await client.getFiatMap(options)).toBe(response)
+    expect(fetcher).toHaveBeenCalledTimes(1)
+    expect(fetcher).toHaveBeenCalledWith(
+      `https://pro-api.coinmarketcap.com/v1/fiat/map?${query}`,
+      client.config
+    )
+    expect(client.config.method).toBe('GET')
+    expect(client.config.headers['X-CMC_PRO_API_KEY']).toBe('test-api-key')
+    expect(json).toHaveBeenCalledTimes(1)
+  })
+
+  test('preserves the selected version, request configuration and caller options', async () => {
+    const fetcher = jest.fn().mockResolvedValue({ json: () => Promise.resolve({ data: [] }) })
+    const config = { timeout: 1000 }
+    const options = Object.freeze({ start: 1, limit: 5, sort: 'name', includeMetals: false })
+    const client = new CoinMarketCap('test-api-key', { version: 'v2', fetcher, config })
+
+    await client.getFiatMap(options)
+
+    expect(fetcher).toHaveBeenCalledWith(
+      'https://pro-api.coinmarketcap.com/v2/fiat/map?start=1&limit=5&sort=name&include_metals=false',
+      client.config
+    )
+    expect(client.config.timeout).toBe(1000)
+    expect(options).toEqual({ start: 1, limit: 5, sort: 'name', includeMetals: false })
+    expect(config).toEqual({ timeout: 1000 })
+  })
+
+  test('returns API error responses unchanged', async () => {
+    const response = { status: { error_code: 1001, error_message: 'Invalid API key' } }
+    const fetcher = jest.fn().mockResolvedValue({ ok: false, json: () => Promise.resolve(response) })
+    const client = new CoinMarketCap('test-api-key', { fetcher })
+
+    expect(await client.getFiatMap()).toBe(response)
+  })
+
+  test('propagates fetch failures', async () => {
+    const error = new Error('Request failed')
+    const fetcher = jest.fn().mockRejectedValue(error)
+    const client = new CoinMarketCap('test-api-key', { fetcher })
+
+    await expect(client.getFiatMap()).rejects.toBe(error)
+  })
+
+  test('propagates JSON parsing failures', async () => {
+    const error = new SyntaxError('Invalid JSON')
+    const fetcher = jest.fn().mockResolvedValue({ json: () => Promise.reject(error) })
+    const client = new CoinMarketCap('test-api-key', { fetcher })
+
+    await expect(client.getFiatMap()).rejects.toBe(error)
+  })
+})
+
 test('should be defined', () => {
   expect(CoinMarketCap).toBeDefined()
 })
@@ -52,6 +123,7 @@ test('should return new CoinMarketCap client', () => {
   expect(client.getGlobal).toBeDefined()
   expect(client.getQuotes).toBeDefined()
   expect(client.getIdMap).toBeDefined()
+  expect(client.getFiatMap).toBeDefined()
   expect(client.getMetadata).toBeDefined()
 })
 
