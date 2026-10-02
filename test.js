@@ -1,10 +1,46 @@
 require('jest-extended')
 require('jest-chain')
+const { readFileSync } = require('fs')
+const path = require('path')
 const CoinMarketCap = require('./')
 
 require('dotenv').config()
 
 const API_KEY = process.env.COINMARKETCAP_API_KEY
+
+describe('API version', () => {
+  test.each([undefined, {}, { version: undefined }])('defaults to v1 with options %p', options => {
+    const client = new CoinMarketCap('test-api-key', options)
+
+    expect(client.url).toBe('https://pro-api.coinmarketcap.com/v1')
+  })
+
+  test.each([undefined, 'v2'])('uses the selected version %p for requests', async version => {
+    const response = { data: [] }
+    const fetcher = jest.fn().mockResolvedValue({ json: () => Promise.resolve(response) })
+    const client = new CoinMarketCap('test-api-key', { version, fetcher })
+
+    expect(await client.getIdMap({ symbol: 'BTC' })).toBe(response)
+    expect(fetcher).toHaveBeenCalledTimes(1)
+    expect(fetcher).toHaveBeenCalledWith(
+      `https://pro-api.coinmarketcap.com/${version || 'v1'}/cryptocurrency/map?symbol=BTC`,
+      client.config
+    )
+  })
+
+  test.each([
+    ['index.js', /@param[^\n]*options\.version[^\n]*Defaults to '([^']+)'/],
+    ['README.md', /`[Oo]ptions\.version`[^\n]*default `'([^']+)'`/],
+    ['docs/index.html', /[Oo]ptions\.version<\/span>[\s\S]*?default <code>&#39;([^&]+)&#39;<\/code>/]
+  ])('documents the runtime default in %s', (file, pattern) => {
+    const contents = readFileSync(path.join(__dirname, file), 'utf8')
+    const documentedVersion = contents.match(pattern)
+    const client = new CoinMarketCap('test-api-key')
+
+    expect(documentedVersion).not.toBeNull()
+    expect(client.url).toBe(`https://pro-api.coinmarketcap.com/${documentedVersion[1]}`)
+  })
+})
 
 test('should be defined', () => {
   expect(CoinMarketCap).toBeDefined()
