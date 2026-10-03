@@ -11,17 +11,19 @@
   "bugs": "https://github.com/tiaanduplessis/coinmarketcap-api",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "scripts": {
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
     "lint": "standard --fix ./*.js",
     "start": "npm run test",
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run test:types",
     "docs": "npm run docs:readme && npm run docs:html",
     "docs:readme": "documentation readme index.js --section=API",
-    "docs:html": "documentation build index.js -f html -o docs"
+    "docs:html": "documentation build index.js -f html -o docs",
+    "test:types": "node test-types.js"
   },
   "jest": {
     "setupFilesAfterEnv": [
@@ -39,7 +41,8 @@
     "jest": "24.8.0",
     "jest-chain": "1.1.2",
     "jest-extended": "^0.11.2",
-    "standard": "14.1.0"
+    "standard": "14.1.0",
+    "typescript": "5.9.3"
   },
   "dependencies": {
     "node-fetch": "^2.6.0",
@@ -61,5 +64,6 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
-  }
+  },
+  "types": "index.d.ts"
 }
