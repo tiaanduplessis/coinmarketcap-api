@@ -19,11 +19,12 @@
     "test:cov": "npm run test -- --coverage",
     "lint": "standard --fix ./*.js",
     "start": "npm run test",
-    "pretest": "npm run lint && npm run test:types",
+    "pretest": "npm run lint && npm run test:types && npm run test:base-url",
     "docs": "npm run docs:readme && npm run docs:html",
     "docs:readme": "documentation readme index.js --section=API",
     "docs:html": "documentation build index.js -f html -o docs",
-    "test:types": "node test-types.js"
+    "test:types": "node test-types.js",
+    "test:base-url": "node test-base-url.js"
   },
   "jest": {
     "setupFilesAfterEnv": [

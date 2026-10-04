@@ -38,6 +38,36 @@ client.getGlobal().then(console.log).catch(console.error)
 
 Check out the [CoinMarketCap Pro API documentation](https://pro.coinmarketcap.com/api/v1#section/Introduction) for more information!
 
+### Custom base URL
+
+Use `baseUrl` to point the client at a mock service or another trusted API host:
+
+```js
+const mockClient = new CoinMarketCap('test-api-key', {
+  baseUrl: 'http://127.0.0.1:3000',
+  version: 'v1'
+})
+// Requests http://127.0.0.1:3000/v1/cryptocurrency/map?symbol=BTC
+mockClient.getIdMap({ symbol: 'BTC' }).then(console.log).catch(console.error)
+```
+
+The default remains `https://pro-api.coinmarketcap.com`. Pass a base URL without
+a trailing slash or API version; a path prefix is allowed. The client appends
+`/${version}` (default `v1`) and the existing endpoint path without validating or
+normalizing the URL. Omitting `baseUrl` or passing `undefined` selects the default.
+The option applies to all six methods and can be combined with `fetcher` and `config`.
+
+The configured host receives the API key in the default request headers, so use
+only hosts you trust and use a dummy key for mocks. Existing shallow `config`
+overrides, response handling and error behavior are unchanged.
+
+Run `npm run test:base-url` for offline source and npm-tarball regression tests
+using injected fetchers, dummy keys and no network requests. These development
+checks require Node.js 14.17 or newer and npm 7 or newer.
+
+Thanks to [oleoleoleoleo](https://github.com/oleoleoleoleo) for the original
+base URL proposal in [#58](https://github.com/tiaanduplessis/coinmarketcap-api/pull/58).
+
 ## TypeScript
 
 The package includes declarations for the CommonJS client and all six wrapper methods:
@@ -106,6 +136,7 @@ and [#60](https://github.com/tiaanduplessis/coinmarketcap-api/pull/60).
     -   `Options.version`   (optional, default `'v1'`)
     -   `Options.fetcher`   (optional, default `fetch`)
     -   `Options.config`   (optional, default `{}`)
+    -   `Options.baseUrl`   (optional, default `'https://pro-api.coinmarketcap.com'`)
 
 ### getIdMap
 

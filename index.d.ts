@@ -38,6 +38,8 @@ declare namespace CoinMarketCap {
     fetcher?: Fetcher | undefined
     /** Passed to the fetcher after a shallow merge with the default GET configuration. */
     config?: object | undefined
+    /** Base URL without a trailing slash or API version. Defaults to https://pro-api.coinmarketcap.com. */
+    baseUrl?: string | undefined
   }
 
   interface IdMapOptions {
