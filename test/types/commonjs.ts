@@ -2,7 +2,9 @@ import CoinMarketCap = require('coinmarketcap-api')
 
 const client = new CoinMarketCap('test-api-key')
 new CoinMarketCap('test-api-key', {})
-new CoinMarketCap('test-api-key', { version: undefined, fetcher: undefined, config: undefined })
+new CoinMarketCap('test-api-key', { version: undefined, fetcher: undefined, config: undefined, baseUrl: undefined })
+new CoinMarketCap('test-api-key', { baseUrl: 'http://127.0.0.1:3000' })
+new CoinMarketCap('test-api-key', { baseUrl: 'https://mock.example.test/proxy', version: 'v2' })
 new CoinMarketCap('test-api-key', { version: 'v2' })
 new CoinMarketCap('test-api-key', { version: 'custom-version' })
 
@@ -73,6 +75,10 @@ async function readResponse() {
 
 // @ts-expect-error API keys are strings.
 new CoinMarketCap(123)
+// @ts-expect-error Base URLs must be strings.
+new CoinMarketCap('test-api-key', { baseUrl: 123 })
+// @ts-expect-error null does not select the default base URL.
+new CoinMarketCap('test-api-key', { baseUrl: null })
 // @ts-expect-error Options are objects, not primitive ID-map arguments.
 client.getIdMap('BTC')
 // @ts-expect-error Only the wrapper's supported option names are exposed.
