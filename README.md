@@ -26,10 +26,13 @@ $ yarn add coinmarketcap-api
 
 ## Usage
 
+Run this client in Node.js on your own backend or server-side function. Set
+`COINMARKETCAP_API_KEY` as a secret environment variable in that server environment:
+
 ```js
 const CoinMarketCap = require('coinmarketcap-api')
 
-const apiKey = 'api key'
+const apiKey = process.env.COINMARKETCAP_API_KEY
 const client = new CoinMarketCap(apiKey)
 
 client.getTickers().then(console.log).catch(console.error)
@@ -37,6 +40,17 @@ client.getGlobal().then(console.log).catch(console.error)
 ```
 
 Check out the [CoinMarketCap Pro API documentation](https://pro.coinmarketcap.com/api/v1#section/Introduction) for more information!
+
+### Browser requests and CORS
+
+CoinMarketCap [blocks direct browser requests](https://coinmarketcap.com/api/documentation/faq)
+to protect API keys. This Node.js wrapper uses `node-fetch` by default; it cannot
+change the API's CORS policy.
+
+Have your frontend call an endpoint on your own backend, and let that backend
+call CoinMarketCap with this client. Keep the API key on the server. Never put it
+in frontend code or browser-exposed environment variables, or send it through a
+public CORS proxy.
 
 ### Custom base URL
 
